@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yu-Gi-Oh! Checker</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-header-left">
+                <a href="index.html" class="navbar-name">Yu-Gi-Oh! Checker</a>
+            </div>
+            <div class="navbar-header-right">
+                <a href="./">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!--Card Container-->
+    <div class="card-container-individual">
+        <div id="cards" class="table"></div>
+        <div class="addition-info">
+            <div class="collection"></div>
+            <div class="seller-container"></div>
+        </div>
+    </div>
+
+</body>
+<script src="./js/jquery.js" text="text/javascript"></script>
+<script src="./js/main.js" text="text/javascript"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js" text="text/javascript"></script>
+<script>
+    getCard()
+</script>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yu-Gi-Oh! Checker</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-header-left">
+                <a href="index.html" class="navbar-name">Yu-Gi-Oh! Checker</a>
+            </div>
+            <div class="navbar-header-right">
+                <a href="#">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!--Search Area-->
+    <div class="search-container">
+        <div class="search">
+            <h2 class="search-title">Search For Any Cards</h2>
+            <form class="form-container" id="search-form">
+                <input type="text" class="form-control" id="searchText" placeholder="Enter Card Name or CardID">
+                <button class="search-btn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!--Hidden Sort/Filter Button-->
+    <div class="button-container">
+        <button class="sort-filter">Sort/Filter</button>
+    </div>
+
+    <!--Hidden Overlay Sort/Filter Form-->
+    <div class="sort-filter-overlay">
+        <div class="sort-filter-overlay-form">
+            <button id="cross">&cross;</button>
+            <p class="overlay-title">Sorting/Filtering</p>
+            <div class="sort-filter-container">
+                <div class="sorting">
+                    <p class="left-side-bar-descriptor">Sorting</p>
+                    <select class="sort-select">
+                        <option value="name" selected>Name (Default) </option>
+                        <option value="atk">Attack</option>
+                        <option value="def">Defense</option>
+                        <option value="level">Level/Link Value</option>
+                    </select>
+                </div>
+                <hr class="separator">
+                <div class="filtering">
+                    <p class="left-side-bar-descriptor">Filtering</p>
+                    <div class="filter-monsters">
+                        <div class="filter-level">
+                            <p class="left-side-bar-text">By Level/Link Level</p>
+                            <input type="range" min="0" max="12" value="0" class="slider">
+                            <p class="newValue left-side-bar-text" value="0">N/A</p>
+                        </div>
+                        <hr class="separator">
+                        <div class="sorting">
+                            <p class="left-side-bar-text">Card Type</p>
+                            <select class="sort-select-type">
+                                <option value="none" selected>None (Default) </option>
+                                <option value="Normal%20Monster">Normal Monster</option>
+                                <option value="Effect%20Monster">Effect Monster</option>
+                                <option value="Ritual%20Monster">Ritual Monster</option>
+                                <option value="Fusion%20Monster">Fusion Monster</option>
+                                <option value="Synchro%20Monster">Synchro Monster</option>
+                                <option value="XYZ%20Monster">XYZ Monster</option>
+                                <option value="Link%20Monster">Link Monster</option>
+                                <option value="Pendulum%20Normal%20Monster">Normal Pendulum Monster</option>
+                                <option value="Pendulum%20Effect%20Monster">Effect Pendulum Monster</option>
+                                <option value="Pendulum%20Effect%20Ritual%20Monster">Ritual Pendulum Monster</option>
+                                <option value="Pendulum%20Effect%20Fusion%20Monster">Fusion Pendulum Monster</option>
+                                <option value="Synchro%20Pendulum%20Effect Monster">Synchro Pendulum Monster</option>
+                                <option value="XYZ%20Pendulum%20Effect%20Monster">Xyz Pendulum Monster</option>
+                                <option value="spell%20card">Spell Card</option>
+                                <option value="trap%20card">Trap Card</option>
+                                <option value="token">Token</option>
+                            </select>
+                        </div>
+                        <hr class="separator">
+                        <div class="filter-type-container">
+                            <p class="left-side-bar-text">Monster Attribute</p>
+                            <div class="filter-type">
+                                <div class="filter-option">
+                                    <input type="checkbox" value="dark" class="monster-attribute" name="monster-attribute">
+                                    <label>Dark</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="divine" class="monster-attribute" name="monster-attribute">
+                                    <label>Divine</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="earth" class="monster-attribute" name="monster-attribute">
+                                    <label>Earth</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="fire" class="monster-attribute" name="monster-attribute">
+                                    <label>Fire</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="light" class="monster-attribute" name="monster-attribute">
+                                    <label>Light</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="water" class="monster-attribute" name="monster-attribute">
+                                    <label>Water</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="wind" class="monster-attribute" name="monster-attribute">
+                                    <label>Wind</label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="separator">
+                        <div class="filter-type-container">
+                            <p class="left-side-bar-text">Monster Race</p>
+                            <div class="filter-type">
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Aqua" class="filter-race" name="monster-race">
+                                    <label>Aqua</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Beast" class="filter-race" name="monster-race">
+                                    <label>Beast</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Beast-Warrior" class="filter-race" name="monster-race">
+                                    <label>Beast-Warrior</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Creator-God" class="filter-race" name="monster-race">
+                                    <label>Creator-God</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Cyberse" class="filter-race" name="monster-race">
+                                    <label>Cyberse</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Dinosaur" class="filter-race" name="monster-race">
+                                    <label>Dinosaur</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Divine-Beast" class="filter-race" name="monster-race">
+                                    <label>Divine-Beast</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Dragon" class="filter-race" name="monster-race">
+                                    <label>Dragon</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Fairy" class="filter-race" name="monster-race">
+                                    <label>Fairy</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Fiend" class="filter-race" name="monster-race">
+                                    <label>Fiend</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Fish" class="filter-race" name="monster-race">
+                                    <label>Fish</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Insect" class="filter-race" name="monster-race">
+                                    <label>Insect</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Machine" class="filter-race" name="monster-race">
+                                    <label>Machine</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Plant" class="filter-race" name="monster-race">
+                                    <label>Plant</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Psychic" class="filter-race" name="monster-race">
+                                    <label>Psychic</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Pyro" class="filter-race" name="monster-race">
+                                    <label>Pyro</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Reptile" class="filter-race" name="monster-race">
+                                    <label>Reptile</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Rock" class="filter-race" name="monster-race">
+                                    <label>Rock</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Sea Serpent" class="filter-race" name="monster-race">
+                                    <label>Sea Serpent</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Spellcaster" class="filter-race" name="monster-race">
+                                    <label>Spellcaster</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Thunder" class="filter-race" name="monster-race">
+                                    <label>Thunder</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Warrior" class="filter-race" name="monster-race">
+                                    <label>Warrior</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Winged Beast" class="filter-race" name="monster-race">
+                                    <label>Winged Beast</label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="separator">
+                        <div class="filter-type-container">
+                            <p class="left-side-bar-text">Spell/Trap Type</p>
+                            <p class="type-text">Spell: </p>
+                            <div class="filter-type">
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Normal" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Normal</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Field" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Field</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Equip" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Equip</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Continuous" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Continuous</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Quick-Play" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Quick-Play</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Ritual" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Ritual</label>
+                                </div>
+                            </div>
+                            <p class="type-text trap">Trap: </p>
+                            <div class="filter-type">
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Normal" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Normal</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Continuous" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Continuous</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" value="Counter" class="spell-trap-type" name="spell-trap-type">
+                                    <label>Counter</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="reset">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Card Container & SideBar-->
+    <div class="content-container">
+        <div class="left-side-bar">
+            <div class="sorting">
+                <p class="left-side-bar-descriptor">Sorting</p>
+                <select class="sort-select">
+                    <option value="name" selected>Name (Default) </option>
+                    <option value="atk">Attack</option>
+                    <option value="def">Defense</option>
+                    <option value="level">Level/Link Value</option>
+                </select>
+            </div>
+            <hr class="separator">
+            <div class="filtering">
+                <p class="left-side-bar-descriptor">Filtering</p>
+                <div class="filter-monsters">
+                    <div class="filter-level">
+                        <p class="left-side-bar-text">By Level/Link Level</p>
+                        <input type="range" min="0" max="12" value="0" class="slider">
+                        <p class="newValue left-side-bar-text" value="0">N/A</p>
+                    </div>
+                    <hr class="separator">
+                    <div class="sorting">
+                        <p class="left-side-bar-text">Card Type</p>
+                        <select class="sort-select-type">
+                            <option value="none" selected>None (Default) </option>
+                            <option value="Normal%20Monster">Normal Monster</option>
+                            <option value="Effect%20Monster">Effect Monster</option>
+                            <option value="Ritual%20Monster">Ritual Monster</option>
+                            <option value="Fusion%20Monster">Fusion Monster</option>
+                            <option value="Synchro%20Monster">Synchro Monster</option>
+                            <option value="XYZ%20Monster">XYZ Monster</option>
+                            <option value="Link%20Monster">Link Monster</option>
+                            <option value="Pendulum%20Normal%20Monster">Normal Pendulum Monster</option>
+                            <option value="Pendulum%20Effect%20Monster">Effect Pendulum Monster</option>
+                            <option value="Pendulum%20Effect%20Ritual%20Monster">Ritual Pendulum Monster</option>
+                            <option value="Pendulum%20Effect%20Fusion%20Monster">Fusion Pendulum Monster</option>
+                            <option value="Synchro%20Pendulum%20Effect%20Monster">Synchro Pendulum Monster</option>
+                            <option value="XYZ%20Pendulum%20Effect%20Monster">Xyz Pendulum Monster</option>
+                            <option value="spell%20card">Spell Card</option>
+                            <option value="trap%20card">Trap Card</option>
+                            <option value="token">Token</option>
+                        </select>
+                    </div>
+                    <hr class="separator">
+                    <div class="filter-type-container">
+                        <p class="left-side-bar-text">Monster Attribute</p>
+                        <div class="filter-type">
+                            <div class="filter-option">
+                                <input type="checkbox" value="dark" class="monster-attribute" name="monster-attribute">
+                                <label>Dark</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="divine" class="monster-attribute" name="monster-attribute">
+                                <label>Divine</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="earth" class="monster-attribute" name="monster-attribute">
+                                <label>Earth</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="fire" class="monster-attribute" name="monster-attribute">
+                                <label>Fire</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="light" class="monster-attribute" name="monster-attribute">
+                                <label>Light</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="water" class="monster-attribute" name="monster-attribute">
+                                <label>Water</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="wind" class="monster-attribute" name="monster-attribute">
+                                <label>Wind</label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="separator">
+                    <div class="filter-type-container">
+                        <p class="left-side-bar-text">Monster Race</p>
+                        <div class="filter-type">
+                            <div class="filter-option">
+                                <input type="checkbox" value="Aqua" class="monster-race" name="monster-race">
+                                <label>Aqua</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Beast" class="monster-race" name="monster-race">
+                                <label>Beast</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Beast-Warrior" class="monster-race" name="monster-race">
+                                <label>Beast-Warrior</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Creator-God" class="monster-race" name="monster-race">
+                                <label>Creator-God</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Cyberse" class="monster-race" name="monster-race">
+                                <label>Cyberse</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Dinosaur" class="monster-race" name="monster-race">
+                                <label>Dinosaur</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Divine-Beast" class="monster-race" name="monster-race">
+                                <label>Divine-Beast</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Dragon" class="monster-race" name="monster-race">
+                                <label>Dragon</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Fairy" class="monster-race" name="monster-race">
+                                <label>Fairy</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Fiend" class="monster-race" name="monster-race">
+                                <label>Fiend</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Fish" class="monster-race" name="monster-race">
+                                <label>Fish</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Insect" class="monster-race" name="monster-race">
+                                <label>Insect</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Machine" class="monster-race" name="monster-race">
+                                <label>Machine</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Plant" class="monster-race" name="monster-race">
+                                <label>Plant</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Psychic" class="monster-race" name="monster-race">
+                                <label>Psychic</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Pyro" class="monster-race" name="monster-race">
+                                <label>Pyro</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Reptile" class="monster-race" name="monster-race">
+                                <label>Reptile</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Rock" class="monster-race" name="monster-race">
+                                <label>Rock</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Sea Serpent" class="monster-race" name="monster-race">
+                                <label>Sea Serpent</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Spellcaster" class="monster-race" name="monster-race">
+                                <label>Spellcaster</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Thunder" class="monster-race" name="monster-race">
+                                <label>Thunder</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Warrior" class="monster-race" name="monster-race">
+                                <label>Warrior</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Winged Beast" class="monster-race" name="monster-race">
+                                <label>Winged Beast</label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="separator">
+                    <div class="filter-type-container">
+                        <p class="left-side-bar-text">Spell/Trap Type</p>
+                        <p class="type-text">Spell: </p>
+                        <div class="filter-type">
+                            <div class="filter-option">
+                                <input type="checkbox" value="Normal" class="spell-trap-type" name="spell-trap-type">
+                                <label>Normal</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Field" class="spell-trap-type" name="spell-trap-type">
+                                <label>Field</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Equip" class="spell-trap-type" name="spell-trap-type">
+                                <label>Equip</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Continuous" class="spell-trap-type" name="spell-trap-type">
+                                <label>Continuous</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Quick-Play" class="spell-trap-type" name="spell-trap-type">
+                                <label>Quick-Play</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Ritual" class="spell-trap-type" name="spell-trap-type">
+                                <label>Ritual</label>
+                            </div>
+                        </div>
+                        <p class="type-text trap">Trap: </p>
+                        <div class="filter-type">
+                            <div class="filter-option">
+                                <input type="checkbox" value="Normal" class="spell-trap-type" name="spell-trap-type">
+                                <label>Normal</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Continuous" class="spell-trap-type" name="spell-trap-type">
+                                <label>Continuous</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" value="Counter" class="spell-trap-type" name="spell-trap-type">
+                                <label>Counter</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="reset">Reset</button>
+                <div class="footer">
+                    <p>&copy;2023 Long To Lotto Tang</p>
+                    <p>Data retrieved from: Yu-Gi-Oh! API v2</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div id="cards" class="row"></div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <li class="page-item">
+            <button class="prevButton">Previous</button>
+        </li>
+        <li class="page-item">
+            <button class="nextButton">Next</button>
+        </li>
+    </div>
+
+</body>
+<script src="./js/jquery.js" text="text/javascript"></script>
+<script src="./js/main.js" text="text/javascript"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js" text="text/javascript"></script>
+</html>
